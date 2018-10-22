@@ -11,7 +11,7 @@ const ALL_ITEMS_QUERY = gql`
       id
       title
       price
-      discription
+      description
       image
       largeImage
     }
@@ -53,3 +53,4 @@ class Items extends Component {
 }
 
 export default Items;
+export { ALL_ITEMS_QUERY };
