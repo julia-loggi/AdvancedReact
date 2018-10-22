@@ -1,4 +1,5 @@
-endpoint: ${env:PRISMA_ENDPOINT}
+#endpoint: ${env:PRISMA_ENDPOINT}
+endpoint: https://eu1.prisma.sh/julie-72ce13/backend/dev
 datamodel: datamodel.graphql
 # secret: ${env:PRISMA_SECRET}
 

@@ -3,7 +3,7 @@
 type Mutation {
   createItem(
     title: String!
-    discription: String
+    description: String
     price: Int
     image: String
     largeImage: String
