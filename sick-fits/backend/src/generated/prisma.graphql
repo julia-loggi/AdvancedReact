@@ -1,5 +1,5 @@
 # source: https://eu1.prisma.sh/julie-72ce13/backend/dev
-# timestamp: Mon Oct 22 2018 16:24:43 GMT+0300 (MSK)
+# timestamp: Mon Oct 22 2018 18:05:35 GMT+0300 (MSK)
 
 type AggregateItem {
   count: Int!
@@ -17,7 +17,7 @@ type BatchPayload {
 type Item implements Node {
   id: ID!
   title: String!
-  description: String
+  description: String!
   image: String
   largeImage: String
   price: Int!
@@ -35,7 +35,7 @@ type ItemConnection {
 
 input ItemCreateInput {
   title: String!
-  description: String
+  description: String!
   image: String
   largeImage: String
   price: Int!
@@ -72,7 +72,7 @@ enum ItemOrderByInput {
 type ItemPreviousValues {
   id: ID!
   title: String!
-  description: String
+  description: String!
   image: String
   largeImage: String
   price: Int!
