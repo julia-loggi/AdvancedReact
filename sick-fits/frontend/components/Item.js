@@ -28,8 +28,8 @@ class Item extends Component {
           <Link href={{ pathname: 'update', query: { id: item.id } }}>
             <a>Edit ✏️</a>
           </Link>
-          <button>Add To Cart</button>
-          <button>Delete</button>
+          <button>Add To Cart 🛒</button>
+          <button>Delete ✖️</button>
         </div>
       </ItemStyles>
     );
