@@ -63,19 +63,9 @@ class CreateItem extends Component {
     });
   };
 
-  update = (cache, payload) => {
-    const data = cache.readQuery({ query: ALL_ITEMS_QUERY });
-    data.items = data.items.push(payload.data.createItem.id);
-    cache.writeQuery({ query: ALL_ITEMS_QUERY, data });
-  };
-
   render() {
     return (
-      <Mutation
-        mutation={CREATE_ITEM_MUTATION}
-        variables={this.state}
-        update={this.update}
-      >
+      <Mutation mutation={CREATE_ITEM_MUTATION} variables={this.state}>
         {(createItem, { loading, error }) => (
           <Form
             onSubmit={async e => {
