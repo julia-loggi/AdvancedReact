@@ -1,5 +1,5 @@
 # source: https://eu1.prisma.sh/julie-72ce13/siccck-fits/dev
-# timestamp: Mon Oct 29 2018 10:55:09 GMT+0300 (MSK)
+# timestamp: Tue Oct 30 2018 16:16:19 GMT+0300 (MSK)
 
 type AggregateItem {
   count: Int!
@@ -128,7 +128,7 @@ input ItemUpdateInput {
   user: UserUpdateOneRequiredInput
 }
 
-input ItemUpdateManyInput {
+input ItemUpdateManyMutationInput {
   title: String
   description: String
   image: String
@@ -389,8 +389,8 @@ type Mutation {
   deleteUser(where: UserWhereUniqueInput!): User
   upsertItem(where: ItemWhereUniqueInput!, create: ItemCreateInput!, update: ItemUpdateInput!): Item!
   upsertUser(where: UserWhereUniqueInput!, create: UserCreateInput!, update: UserUpdateInput!): User!
-  updateManyItems(data: ItemUpdateManyInput!, where: ItemWhereInput): BatchPayload!
-  updateManyUsers(data: UserUpdateManyInput!, where: UserWhereInput): BatchPayload!
+  updateManyItems(data: ItemUpdateManyMutationInput!, where: ItemWhereInput): BatchPayload!
+  updateManyUsers(data: UserUpdateManyMutationInput!, where: UserWhereInput): BatchPayload!
   deleteManyItems(where: ItemWhereInput): BatchPayload!
   deleteManyUsers(where: UserWhereInput): BatchPayload!
 }
@@ -584,7 +584,7 @@ input UserUpdateInput {
   permissions: UserUpdatepermissionsInput
 }
 
-input UserUpdateManyInput {
+input UserUpdateManyMutationInput {
   name: String
   email: String
   password: String
