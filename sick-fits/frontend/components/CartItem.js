@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 
+import RemoveFromCart from './RemoveFromCart';
 import formatMoney from '../lib/formatMoney';
 
 const CartItemStyles = styled.li`
@@ -21,7 +22,7 @@ const CartItemStyles = styled.li`
 
 const CartItem = ({ cartItem }) => (
   <CartItemStyles>
-    <img width="200" src={cartItem.item.image} alt={cartItem.item.title} />
+    <img width="150" src={cartItem.item.image} alt={cartItem.item.title} />
     <div className="cart-item-details">
       <h3>{cartItem.item.title}</h3>
       <p>
@@ -32,6 +33,7 @@ const CartItem = ({ cartItem }) => (
         </em>
       </p>
     </div>
+    <RemoveFromCart id={cartItem.id} />
   </CartItemStyles>
 );
 
