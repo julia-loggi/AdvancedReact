@@ -50,7 +50,7 @@ const Mutations = {
       ['ADMIN', 'ITEMDELETE'].includes(permission)
     );
     if (!ownsItem && !hasPermission) {
-      throw new Error("Ypu don't have permission to do that!");
+      throw new Error("You don't have permission to do that!");
     }
     // 3. Delete it!
     return ctx.db.mutation.deleteItem({ where }, info);
@@ -197,6 +197,40 @@ const Mutations = {
         },
         where: {
           id: args.userId
+        }
+      },
+      info
+    );
+  },
+  async addToCart(parent, args, ctx, info) {
+    const { userId } = ctx.request;
+    if (!userId) {
+      throw new Error('You must be signed in sooooon');
+    }
+    const [existingCartItem] = await ctx.db.query.cartItems({
+      where: {
+        user: { id: userId },
+        item: { id: args.id }
+      }
+    });
+    if (existingCartItem) {
+      return ctx.db.mutation.updateCartItem(
+        {
+          where: { id: existingCartItem.id },
+          data: { quantity: existingCartItem.quantity + 1 }
+        },
+        info
+      );
+    }
+    return ctx.db.mutation.createCartItem(
+      {
+        data: {
+          user: {
+            connect: { id: userId }
+          },
+          item: {
+            connect: { id: args.id }
+          }
         }
       },
       info
