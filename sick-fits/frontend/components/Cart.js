@@ -39,7 +39,7 @@ const Cart = () => {
         const me = user.data.me;
         if (!me) return null;
         return (
-          <CartStyles open={localState.cartOpen}>
+          <CartStyles open={localState.data.cartOpen}>
             <header>
               <CloseButton onClick={toggleCart} title="close">
                 &times;
