@@ -61,7 +61,7 @@ const Cart = () => {
             </ul>
             <footer>
               <p>{formatMoney(calcTotalPrice(me.cart))}</p>
-              {me.cart.lenght && (
+              {me.cart.length > 0 && (
                 <TakeMyMoney>
                   <SickButton>Checkout</SickButton>
                 </TakeMyMoney>
