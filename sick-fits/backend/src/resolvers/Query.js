@@ -40,6 +40,18 @@ const Query = {
       throw new Error("You can't see this buddddd!");
     }
     return order;
+  },
+  async orders(parent, args, ctx, info) {
+    const { userId } = ctx.request;
+    if (!userId) {
+      throw new Error('You are not logged in!');
+    }
+    return ctx.db.query.orders(
+      {
+        where: { user: { id: userId } }
+      },
+      info
+    );
   }
 };
 
