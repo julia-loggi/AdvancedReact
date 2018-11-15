@@ -1,4 +1,4 @@
-import { shallow, mount } from 'enzyme';
+import { mount } from 'enzyme';
 import toJSON from 'enzyme-to-json';
 import wait from 'waait';
 import { MockedProvider } from 'react-apollo/test-utils';
