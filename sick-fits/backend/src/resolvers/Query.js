@@ -35,8 +35,7 @@ const Query = {
       info
     );
     const ownsOrder = order.user.id == ctx.request.userId;
-    const hasPermissionToSeeOrder = ctx.request.user.permissions.includes('ADMIN');
-    if (!ownsOrder || !hasPermissionToSeeOrder) {
+    if (!ownsOrder) {
       throw new Error("You can't see this buddddd!");
     }
     return order;
