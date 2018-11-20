@@ -30,6 +30,7 @@ class Signin extends Component {
         mutation={SIGNIN_MUTATION}
         variables={this.state}
         refetchQueries={[{ query: CURRENT_USER_QUERY }]}
+        onCompleted={}
       >
         {(signin, { error, loading }) => (
           <Form
@@ -38,6 +39,9 @@ class Signin extends Component {
               e.preventDefault();
               await signin();
               this.setState({ name: '', email: '', password: '' });
+              Router.push({
+                 pathname: '/items',
+               });
             }}
           >
             <fieldset disabled={loading} aria-busy={loading}>
