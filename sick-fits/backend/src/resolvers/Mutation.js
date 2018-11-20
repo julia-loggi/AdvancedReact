@@ -10,7 +10,13 @@ const Mutations = {
   createItem(parent, args, ctx, info) {
     // TODO: check if they are logged in
     if (!ctx.request.userId) {
-      throw new Error('You must be logged to da that!');
+      throw new Error('You must be logged to do that!');
+    }
+    const hasPermissions = ctx.request.user.permissions.some(permission =>
+      ['ADMIN', 'ITEMCREATE'].includes(permission)
+    );
+    if (!hasPermissions) {
+      throw new Error("You don't have permission to do that!");
     }
     const item = ctx.db.mutation.createItem(
       {
@@ -28,6 +34,16 @@ const Mutations = {
     return item;
   },
   updateItem(parent, args, ctx, info) {
+    const { userId } = ctx.request;
+    if (!userId) {
+      throw new Error('You must be signed in');
+    }
+    const hasPermissions = ctx.request.user.permissions.some(permission =>
+      ['ADMIN', 'ITEMUPDATE'].includes(permission)
+    );
+    if (!hasPermissions) {
+      throw new Error("You don't have permission to do that!");
+    }
     // first take a copy of the updates
     const updates = { ...args };
     // remove the ID from updates
@@ -42,6 +58,10 @@ const Mutations = {
     );
   },
   async deleteItem(parent, args, ctx, info) {
+    const { userId } = ctx.request;
+    if (!userId) {
+      throw new Error('You must be signed in');
+    }
     const where = { id: args.id };
     // 1. Find the item
     const item = await ctx.db.query.item({ where }, `{ id, title user { id } }`);
@@ -50,7 +70,7 @@ const Mutations = {
     const hasPermissions = ctx.request.user.permissions.some(permission =>
       ['ADMIN', 'ITEMDELETE'].includes(permission)
     );
-    if (!ownsItem && !hasPermission) {
+    if (!ownsItem && !hasPermissions) {
       throw new Error("You don't have permission to do that!");
     }
     // 3. Delete it!

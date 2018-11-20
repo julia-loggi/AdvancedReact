@@ -41,6 +41,7 @@ const Permissions = props => {
   return (
     <Query query={ALL_USERS_QUERY}>
       {({ data, loading, error }) => {
+        if (loading) return <p>Loading...</p>;
         return (
           <div>
             <Error error={error} />
